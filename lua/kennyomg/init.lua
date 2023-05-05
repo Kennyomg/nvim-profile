@@ -1,5 +1,6 @@
 require("kennyomg.remap")
 require("kennyomg.set")
+require("kennyomg.packer")
 
 local augroup = vim.api.nvim_create_augroup
 local KennyOmgGroup = augroup('KennyOmg', {})
