@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
 
 lsp.preset("recommended")
 
@@ -13,10 +14,10 @@ lsp.ensure_installed({
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete(),
 })
 
 cmp_mappings['<Tab>'] = nil
@@ -63,6 +64,108 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
+
+lsp.configure('intelephense',
+    {
+        on_attach = lsp.on_attach,
+        settings = {
+            intelephense = {
+                stubs = {
+                    "apache",
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "com_dotnet",
+                    "Core",
+                    "ctype",
+                    "curl",
+                    "date",
+                    "dba",
+                    "dom",
+                    "enchant",
+                    "exif",
+                    "FFI",
+                    "fileinfo",
+                    "filter",
+                    "fpm",
+                    "ftp",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "hash",
+                    "iconv",
+                    "imap",
+                    "intl",
+                    "json",
+                    "ldap",
+                    "libxml",
+                    "mbstring",
+                    "mcrypt",
+                    "mysqli",
+                    "mysqlnd",
+                    "oci8",
+                    "odbc",
+                    "openssl",
+                    "pcntl",
+                    "pcre",
+                    "PDO",
+                    "pdo_ibm",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "Phar",
+                    "posix",
+                    "pspell",
+                    "readline",
+                    "recode",
+                    "Reflection",
+                    "regex",
+                    "session",
+                    "shmop",
+                    "SimpleXML",
+                    "snmp",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "SPL",
+                    "sqlite3",
+                    "standard",
+                    "superglobals",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "tidy",
+                    "tokenizer",
+                    "xml",
+                    "xmlreader",
+                    "xmlrpc",
+                    "xmlwriter",
+                    "xsl",
+                    "Zend OPcache",
+                    "zip",
+                    "zlib",
+                    "wordpress",
+                    "wp-cli",
+                    "woocommerce",
+                    "wordpress-globals",
+                    "genesis",
+                    "polylang",
+                    "wordpress-seo"
+                },
+                evironment = {
+                    include_paths = {
+                        '~/AppData/Roaming/Composer/vendor/php-stubs',
+                        '~/AppData/Roaming/Composer/vendor/wpsyntex/'
+                    }
+                },
+                files = {
+                    maxSize = 5000000
+                }
+            }
+        }
+    }
+)
 
 lsp.setup()
 
