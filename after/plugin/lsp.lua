@@ -65,6 +65,27 @@ end)
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
 
+lsp.configure('rust_analyzer', {
+    on_attach = lsp.on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+            checkOnSave = {
+                command = "clippy"
+            },
+        }
+    }
+})
+
 lsp.configure('intelephense',
     {
         on_attach = lsp.on_attach,
