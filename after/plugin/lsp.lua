@@ -1,5 +1,4 @@
 local lsp = require('lsp-zero')
-local lspconfig = require('lspconfig')
 
 lsp.preset("recommended")
 
@@ -9,6 +8,19 @@ lsp.ensure_installed({
     'lua_ls',
     'rust_analyzer',
     'intelephense',
+    'clangd',
+    'pyright',
+    'gopls',
+    'bashls',
+    'zls',
+    'cssls',
+    'jsonls',
+    'cmake',
+    --'dart',
+    'asm_lsp',
+    --'glsl',
+    'html',
+    'hls',
 })
 
 local cmp = require('cmp')
