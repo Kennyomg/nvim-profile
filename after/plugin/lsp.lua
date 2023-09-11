@@ -12,15 +12,15 @@ lsp.ensure_installed({
     'pyright',
     'gopls',
     'bashls',
-    'zls',
+    --'zls',
     'cssls',
     'jsonls',
     'cmake',
-    --'dart',
+    --'dartls',
     'asm_lsp',
     --'glsl',
     'html',
-    'hls',
+    --'hls',
 })
 
 local cmp = require('cmp')
@@ -199,6 +199,20 @@ lsp.configure('intelephense',
         }
     }
 )
+
+require 'lspconfig'.dartls.setup({
+    cmd = { "C:\\tools\\dart-sdk\\bin\\dart.exe", "language-server", "--protocol=lsp" },
+    setting = {
+        enableSnippets = true,
+    },
+    init_options = {
+        onlyAnalyzeProjectsWithOpenFiles = false,
+    },
+    on_attach = lsp.on_attach,
+    capabilities = lsp.capabilities,
+    --root_dir = require('lspconfig/util').root_pattern("pubspec.yaml", "pubspec.lock", "analysis_options.yaml", ".git"),
+    root_dir = function() return vim.loop.cwd() end,
+})
 
 lsp.setup()
 
